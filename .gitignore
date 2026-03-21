@@ -1,0 +1,31 @@
+# OS / System
+.DS_Store
+Thumbs.db
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+gen/
+
+#Eclipse
+.metadata/
+.classpath
+.project
+.settings/
+.factorypath
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Environment Variables
+.env
+*.env
+
+# Docker / Infra
+**/logs/
+*.log
+.docker/
