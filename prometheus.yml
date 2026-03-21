@@ -1,0 +1,13 @@
+scrape_configs:
+
+    - job_name: "otel-collector"
+      static_configs:
+          - targets: ["otel-collector:9464"]
+      scrape_interval: 15s
+
+    - job_name: "order-service"
+      metrics_path: "/actuator/prometheus"
+      static_configs:
+          #- targets: ["host.docker.internal:8080"] # Use this if running order-service on the host machine.
+          - targets: ["order-service:8080"] # Use this if running order-service with Docker Compose.
+      scrape_interval: 15s

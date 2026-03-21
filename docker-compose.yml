@@ -1,0 +1,106 @@
+services:
+
+    otel-collector:
+        image: otel/opentelemetry-collector-contrib:0.118.0
+        container_name: otel-collector
+        command: ["--config=/etc/open-telemetry.yml"]
+        volumes:
+            - ./open-telemetry.yml:/etc/open-telemetry.yml
+        ports:
+            - "4317:4317"
+            - "4318:4318"
+            - "9464:9464"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        networks:
+            - ecommerce
+
+    loki:
+        image: grafana/loki:3.0.0
+        container_name: loki
+        volumes:
+            - loki-data:/loki
+        ports:
+            - "3100:3100"
+        networks:
+            - ecommerce
+
+    tempo:
+        image: grafana/tempo:2.7.2
+        container_name: tempo
+        command:
+            - "-config.file=/etc/tempo.yml"
+        volumes:
+            - ./tempo-config.yml:/etc/tempo.yml
+            - tempo-data:/var/tempo
+        ports:
+            - "3200:3200"
+        networks:
+            - ecommerce
+
+    prometheus:
+        image: prom/prometheus:v2.53.1
+        container_name: prometheus
+        command:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus"
+            - "--web.enable-lifecycle"
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+            - prometheus-data:/prometheus
+        ports:
+            - "9090:9090"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        networks:
+            - ecommerce
+
+    grafana:
+        image: grafana/grafana:11.4.0
+        container_name: grafana
+        environment:
+            - GF_SECURITY_ADMIN_USER=admin
+            - GF_SECURITY_ADMIN_PASSWORD=admin
+            - GF_USERS_ALLOW_SIGN_UP="false"
+            - GF_SERVER_HTTP_PORT=3000
+        volumes:
+            - grafana-data:/var/lib/grafana
+            - ./grafana/provisioning:/etc/grafana/provisioning
+        ports:
+            - "3000:3000"
+        depends_on:
+            - prometheus
+            - tempo
+            - loki
+        networks:
+            - ecommerce
+
+    order-service:
+        build:
+            context: ./order-service
+            dockerfile: Dockerfile
+        container_name: order-service
+        ports:
+            - "8080:8080"
+        networks:
+            - ecommerce
+        depends_on:
+            - otel-collector
+        environment:
+            - OTEL_SERVICE_NAME=order-service
+            - OTEL_TRACES_EXPORTER=otlp
+            - OTEL_METRICS_EXPORTER=otlp
+            - OTEL_LOGS_EXPORTER=otlp
+            - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
+            - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+            - OTEL_INSTRUMENTATION_LOGBACK_APPENDER_ENABLED="true"
+
+networks:
+    ecommerce:
+        driver: bridge
+
+volumes:
+    grafana-data:
+    prometheus-data:
+    loki-data:
+    tempo-data:

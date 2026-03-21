@@ -1,0 +1,38 @@
+# Build artifacts
+target/
+bin/
+*.jar
+*.war
+
+# IDEs and Editors
+.vscode/
+.idea/
+.settings/
+.project/
+.classpath/
+*.iml
+*.ipr
+*.iws
+
+# Version Control
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# OS files
+.DS_Store
+thumbs.db
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Logs and help
+HELP.md
+logs/
+*.log
