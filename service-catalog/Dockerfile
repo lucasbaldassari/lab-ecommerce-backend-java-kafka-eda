@@ -12,5 +12,5 @@ RUN chown -R spring:spring /app
 USER spring:spring
 COPY --from=build /app/target/agents/opentelemetry-javaagent.jar opentelemetry-javaagent.jar
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
+EXPOSE 8082
 ENTRYPOINT ["java", "-javaagent:opentelemetry-javaagent.jar", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]

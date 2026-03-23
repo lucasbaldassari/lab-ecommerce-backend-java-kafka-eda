@@ -1,0 +1,5 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://postgresql:5432/ecommerce?currentSchema=catalog_service,public
+        username: postgres
+        password: postgres
