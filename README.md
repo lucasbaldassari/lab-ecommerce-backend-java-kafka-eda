@@ -1,4 +1,4 @@
-# E-commerce Backend (tech lab)
+# [WIP] E-commerce Backend (tech lab)
 
 This project serves as a technical laboratory to explore and implement industry-standard patterns for distributed systems, acting as a living documentation of my journey through advanced Java development and modern software architecture.
 
@@ -11,9 +11,10 @@ The ecosystem simulates a resilient e-commerce backend, orchestrating the checko
 
 ## Table of Contents
 - [1. Tech stack](#1-tech-stack)
-- [2. Architecture](#2-architecture)
-- [3. Desicions](#3-decisions)
-- [4. Roadmap](#4-roadmap)
+- [2. How to run](#2-how-to-run)
+- [3. Architecture](#3-architecture)
+- [4. Desicions](#4-decisions)
+- [5. Roadmap](#5-roadmap)
 
 ## 1. Tech stack
 
@@ -34,7 +35,21 @@ The ecosystem simulates a resilient e-commerce backend, orchestrating the checko
 - **Tempo:** distributed tracing
 - **Grafana:** centralized visualization dashboard
 
-## 2. Architecture
+## 2. How to run
+
+### Start the infrastructure and services
+
+```bash
+docker compose --profile services up -d --build
+```
+
+### Stop the infrastructure and services
+
+```bash
+docker compose --profile services down
+```
+
+## 3. Architecture
 
 ### System architecture overview
 ![System architecture overview](./docs/diagrams/system-architecture-overview.png)
@@ -48,7 +63,7 @@ The ecosystem simulates a resilient e-commerce backend, orchestrating the checko
 ### Event flow - Scenario 3: Payment failure & inventory compensation
 ![Event flow - Scenario 3: Payment failure & inventory compensation](./docs/diagrams/event-flow-scenario-3-payment-failure-inventory-compensation.png)
 
-## 3. Decisions
+## 4. Decisions
 
 ### Observability & Monitoring
 I adopted an observability-first (day zero) approach, configuring the full monitoring stack from the very beginning. This ensures maximum visibility into the system's behavior, which is crucial given the inherent complexity of tracing asynchronous flows in event-driven architectures.
@@ -82,7 +97,7 @@ I adopted a polyglot persistence approach to ensure each microservice uses the s
 ### Testing
 Implementation of unit and integration tests, primarily focused on the integration layer, utilizing Testcontainers with the actual infrastructure stack (PostgreSQL, MongoDB, Kafka, etc.) to ensure high quality and reliability during feature development.
 
-## 4. Roadmap
+## 5. Roadmap
 - [X] Observability and monitoring.
 - [ ] Database and messaging system setup.
 - [ ] Microservices implementation.
