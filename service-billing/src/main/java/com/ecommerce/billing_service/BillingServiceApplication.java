@@ -1,13 +1,13 @@
-package com.ecommerce.payment_service;
+package com.ecommerce.billing_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PaymentServiceApplication {
+public class BillingServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PaymentServiceApplication.class, args);
+		SpringApplication.run(BillingServiceApplication.class, args);
 	}
 
 }

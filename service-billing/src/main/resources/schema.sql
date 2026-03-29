@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS payment_service;
+CREATE SCHEMA IF NOT EXISTS billing_service;
 
-SET search_path TO payment_service, public;
+SET search_path TO billing_service, public;
 
 CREATE TABLE IF NOT EXISTS payment (
     id UUID PRIMARY KEY,

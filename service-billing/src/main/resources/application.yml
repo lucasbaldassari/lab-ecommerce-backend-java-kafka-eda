@@ -3,12 +3,12 @@ server:
 
 spring:
     application:
-        name: payment-service
+        name: billing-service
     datasource:
         driver-class-name: org.postgresql.Driver
     jpa:
         properties:
-            "[hibernate.default_schema]": payment_service
+            "[hibernate.default_schema]": billing_service
             "[hibernate.format_sql]": true
             "[hibernate.jdbc.time_zone]": UTC
             "[hibernate.type.preferred_instant_jdbc_type]": TIMESTAMP_UTC

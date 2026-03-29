@@ -88,7 +88,7 @@ Given its nature as a background "worker", the notification service operates ind
 ### Database
 I adopted a polyglot persistence approach to ensure each microservice uses the storage engine best suited for its specific consistency and data modeling requirements:
 
-- **PostgreSQL (relational)** was chosen for services where ACID compliance and relational integrity are non-negotiable, such as order, catalog and payment. Its robust transaction management is critical for ensuring that the steps of the saga orchestration are persisted reliably.
+- **PostgreSQL (relational)** was chosen for services where ACID compliance and relational integrity are non-negotiable, such as order, catalog and billing. Its robust transaction management is critical for ensuring that the steps of the saga orchestration are persisted reliably.
 
 - **MongoDB (document-oriented)** was chosen for the Notification service to handle polymorphic data structures. Given that notification metadata varies significantly between channels (E-mails, SMS, WhatsApp or Push), a document-oriented approach provides the necessary schema flexibility.
 

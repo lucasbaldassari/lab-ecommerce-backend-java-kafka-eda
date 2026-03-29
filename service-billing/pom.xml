@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.ecommerce</groupId>
-	<artifactId>payment-service</artifactId>
+	<artifactId>billing-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>payment-service</name>
+	<name>billing-service</name>
 	<description/>
 	<url/>
 	<licenses>

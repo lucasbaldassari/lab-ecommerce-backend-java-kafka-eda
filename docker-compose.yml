@@ -148,14 +148,14 @@ services:
             - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
             - OTEL_INSTRUMENTATION_LOGBACK_APPENDER_ENABLED="true"
 
-    payment-service:
+    billing-service:
         profiles:
             - services
         build:
-            context: ./service-payment
+            context: ./service-billing
             dockerfile: Dockerfile
-        image: payment-service:latest
-        container_name: payment-service
+        image: billing-service:latest
+        container_name: billing-service
         ports:
             - "8083:8083"
         networks:
@@ -167,7 +167,7 @@ services:
                 condition: service_healthy
         environment:
             - SPRING_PROFILES_ACTIVE=docker
-            - OTEL_SERVICE_NAME=payment-service
+            - OTEL_SERVICE_NAME=billing-service
             - OTEL_TRACES_EXPORTER=otlp
             - OTEL_METRICS_EXPORTER=otlp
             - OTEL_LOGS_EXPORTER=otlp
