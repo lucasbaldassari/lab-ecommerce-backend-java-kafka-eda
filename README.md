@@ -99,7 +99,7 @@ Implementation of unit and integration tests, primarily focused on the integrati
 
 ## 5. Roadmap
 - [X] Observability and monitoring.
-- [ ] Database and messaging system setup.
+- [X] Database and messaging system setup.
 - [ ] Microservices implementation.
 - [ ] Authentication and authorization.
 - [ ] API gateway integration.
