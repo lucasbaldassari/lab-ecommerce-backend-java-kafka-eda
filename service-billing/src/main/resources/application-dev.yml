@@ -3,3 +3,5 @@ spring:
         url: jdbc:postgresql://localhost:5432/ecommerce?currentSchema=billing_service,public
         username: postgres
         password: postgres
+    kafka:
+        bootstrap-servers: localhost:9094
